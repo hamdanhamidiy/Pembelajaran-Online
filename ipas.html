@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPAS - Pembelajaran Online</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Lato', sans-serif;
+      background: linear-gradient(135deg, #4e73df 50%, #4e73df);
+      color: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-right: auto;
+    }
+
+    .logo-img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    /* Konten Utama */
+    .content {
+      flex: 1;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .content h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #ffffff;
+      margin-top: 20px;
+    }
+
+    .content p {
+      font-size: 16px;
+      margin-bottom: 30px;
+      color: #d1d5db;
+    }
+
+    /* Desain Bab */
+    .bab {
+        background-color: #ffffff;
+        color: #0f172a;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        width: 100%;
+        margin: 10px auto; /* Jarak horizontal center */
+        margin-bottom: 40px; /* Jarak antar bab */
+      }
+      
+      .bab:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+      }
+      
+
+    .bab h3 {
+      font-size: 24px;
+      color: #2563eb;
+      margin-bottom: 10px;
+    }
+
+    .bab p {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .video-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    iframe {
+      width: 1024px;
+      height: 576px;
+      border-radius: 8px;
+    }
+
+    /* Tombol Kembali */
+    .btn-back {
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 14px;
+      background-color: #0f172a;
+      color: white;
+      border: 1px solid transparent;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+    }
+
+    .btn-back:hover {
+      background-color: white;
+      color: #2563eb;
+      border: 1px solid #2563eb;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #0f172a;
+      color: white;
+      font-size: 12px;
+      width: 100%;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="Kurikulum_Merdeka.png" alt="Logo" class="logo-img">
+      <h2>Pembelajaran Online</h2>
+    </div>
+  </header>
+
+  <main class="content">
+    <h2>Ilmu Pengetahuan Alam (IPAS)</h2>
+    <p>Selamat datang di materi IPAS! Di sini, kamu akan belajar tentang dunia alam, mulai dari benda langit hingga proses-proses alam yang terjadi di sekitar kita. Temukan keajaiban alam dengan cara yang mudah dimengerti!</p>
+
+    <!-- BAB 1 -->
+    <div class="bab">
+      <h3>BAB 1: Tumbuhan, Sumber Kehidupan di Bumi</h3>
+      <p>Materi ini membahas bagian tubuh tumbuhan dan fungsinya, proses fotosintesis, serta perkembangbiakan tumbuhan.</p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/WpCoi2Gm388" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- BAB 2 -->
+    <div class="bab">
+      <h3>BAB 2: Wujud Zat dan Perubahannya</h3>
+      <p>Pelajari pengertian materi, wujud-wujud materi, dan perubahan wujud benda dalam kehidupan sehari-hari.</p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/tqBIdGrnbHU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- BAB 3 -->
+    <div class="bab">
+      <h3>BAB 3: Gaya di Sekitar Kita</h3>
+      <p>Materi ini menjelaskan pengaruh gaya terhadap benda, sifat magnet, elastisitas benda, dan gravitasi bumi.</p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/Zj04pTM2O0U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- BAB 4 -->
+    <div class="bab">
+      <h3>BAB 4: Mengubah Bentuk Energi</h3>
+      <p>Pahami transformasi energi dalam kehidupan sehari-hari, serta perbedaan antara energi potensial dan kinetik.</p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/4-pIIprJl9Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- BAB 5 -->
+    <div class="bab">
+      <h3>BAB 5: Cerita tentang Daerahku</h3>
+      <p>Di bab ini, kamu akan belajar tentang sejarah daerah, kekayaan alam, serta masyarakat dan budaya di sekitarmu.</p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/rRvCfUrBvMs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- BAB 6 -->
+    <div class="bab">
+      <h3>BAB 6: Indonesiaku Kaya Budaya</h3>
+      <p>Pelajari keunikan kebiasaan masyarakat Indonesia, kekayaan budaya, serta manfaat pelestarian keberagaman budaya.</p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/J44qjJp1uwo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- BAB 7 -->
+    <div class="bab">
+      <h3>BAB 7: Bagaimana Mendapatkan Semua Keperluan Kita?</h3>
+      <p>Materi ini membahas tentang kebutuhan manusia, cara memenuhinya, serta kegiatan jual beli yang terjadi di masyarakat.</p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/KdPhXXsdn8c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- BAB 8 -->
+    <div class="bab">
+      <h3>BAB 8: Membangun Masyarakat yang Beradab</h3>
+      <p>Pelajari tentang norma, adat istiadat, pentingnya ketertiban, dan konsekuensi pelanggaran aturan dalam masyarakat.</p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/IHb_YaAQBr4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <a href="materi.html" class="btn-back">Kembali ke Materi Pembelajaran</a>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Pembelajaran Online Anak SD. Semua Hak Dilindungi.</p>
+  </footer>
+</body>
+</html>

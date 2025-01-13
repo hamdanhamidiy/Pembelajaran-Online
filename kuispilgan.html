@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Pilihan Ganda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset dan Gaya Global */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: linear-gradient(135deg, #1e3a8a, #1c74b2);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+      padding: 30px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .question-header {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .timer {
+      font-size: 20px;
+      background: #2563eb;
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .choice {
+      background: #1c74b2;
+      padding: 20px;
+      font-size: 20px;
+      border: 3px solid #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .choice:hover {
+      background: #2563eb;
+      transform: scale(1.05);
+    }
+
+    .footer {
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      background: #ff007a;
+      border: none;
+      padding: 15px 25px;
+      font-size: 18px;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .btn:hover {
+      background: #d90065;
+      transform: scale(1.05);
+    }
+
+    .btn-back {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #64748b;
+    }
+
+    .btn-back:hover {
+      background: #334155;
+    }
+
+    .result-container {
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+      padding: 20px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .result-image {
+      width: 230px;
+      height: auto;
+      margin: 20px auto;
+    }
+
+    .result-message {
+      font-size: 28px;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+
+    .result-score {
+      font-size: 24px;
+      color: #ffd700;
+      margin: 10px 0;
+    }
+
+    .result-detail {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #ccc;
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="timer" id="timer">Waktu: 60 detik</div>
+    <h2 class="question-header" id="question-text">Pertanyaan akan muncul di sini</h2>
+    <div class="choices" id="choices-container">
+      <!-- Pilihan akan diisi oleh JavaScript -->
+    </div>
+    <p id="question-counter">1 dari 6</p>
+    <button class="btn" id="next-btn" onclick="nextQuestion()">Berikutnya</button>
+  </div>
+
+  <button class="btn btn-back" onclick="goBack()">Kembali</button>
+
+  <script>
+    const questions = [
+      { question: "Siapa bapak pendidikan nasional?", options: ["Moh. Hatta", "KI Hajar Dewantara", "Sutan Sjahrir", "Bung Hatta"], correctAnswer: "KI Hajar Dewantara" },
+      { question: "Apa ibu kota Indonesia?", options: ["Jakarta", "Bandung", "Surabaya", "Yogyakarta"], correctAnswer: "Jakarta" },
+      { question: "Apa warna bendera Indonesia?", options: ["Merah Putih", "Merah Kuning", "Hijau Putih", "Biru Putih"], correctAnswer: "Merah Putih" },
+      { question: "Berapa jumlah provinsi di Indonesia?", options: ["34", "33", "35", "36"], correctAnswer: "34" },
+      { question: "Apa nama pulau terbesar di Indonesia?", options: ["Sumatra", "Jawa", "Kalimantan", "Sulawesi"], correctAnswer: "Kalimantan" },
+      { question: "Apa nama mata uang Indonesia?", options: ["Rupiah", "Ringgit", "Dollar", "Baht"], correctAnswer: "Rupiah" }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let timerInterval;
+    let timeLeft = 60;
+
+    function displayQuestion() {
+      const questionText = document.getElementById("question-text");
+      const choicesContainer = document.getElementById("choices-container");
+      const questionCounter = document.getElementById("question-counter");
+
+      const currentQuestion = questions[currentQuestionIndex];
+      questionText.textContent = currentQuestion.question;
+
+      choicesContainer.innerHTML = currentQuestion.options
+        .map((option, index) => `
+          <div class="choice" onclick="selectAnswer('${option}')">
+            ${String.fromCharCode(65 + index)}. ${option}
+          </div>
+        `).join("");
+
+      questionCounter.textContent = `${currentQuestionIndex + 1} dari ${questions.length}`;
+    }
+
+    function selectAnswer(selected) {
+      const currentQuestion = questions[currentQuestionIndex];
+      if (selected === currentQuestion.correctAnswer) {
+        score++;
+      }
+      nextQuestion();
+    }
+
+    function nextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      clearInterval(timerInterval);
+      let message = score >= 4 ? "Selamat! Anda Hebat!" : "Jangan Menyerah, Coba Lagi!";
+      let detailMessage = score >= 4
+        ? "Pertahankan prestasi Anda dan terus belajar!"
+        : "Tetap semangat! Kesempatan untuk lebih baik masih ada!";
+
+      document.body.innerHTML = `
+        <div class="result-container">
+          <img class="result-image" src="result.jpg" alt="Hasil">
+          <div class="result-message">${message}</div>
+          <div class="result-score">Skor Anda: ${score} dari ${questions.length}</div>
+          <div class="result-detail">${detailMessage}</div>
+          <button class="btn" onclick="restartQuiz()">Mulai Lagi</button>
+        </div>
+      `;
+    }
+
+    function restartQuiz() {
+      location.reload();
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    function startTimer() {
+      const timerElement = document.getElementById("timer");
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = `Waktu: ${timeLeft} detik`;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          showResults();
+        }
+      }, 1000);
+    }
+
+    // Inisialisasi
+    startTimer();
+    displayQuestion();
+  </script>
+</body>
+</html>

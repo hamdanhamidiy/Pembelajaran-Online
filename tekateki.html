@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Crossword Puzzle</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #e0f7fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 800px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #333333;
+      margin-bottom: 20px;
+    }
+
+    .grid-container {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(10, 40px);
+      grid-auto-rows: 40px;
+      gap: 5px;
+      justify-content: center;
+    }
+
+    .cell {
+      border: 1px solid #ddd;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #ffffff;
+      color: #333;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .cell input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      text-align: center;
+      font-size: 16px;
+      background-color: transparent;
+      text-transform: uppercase;
+      outline: none;
+      font-weight: bold;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .cell.blocked {
+      background-color: #ccc;
+      pointer-events: none;
+    }
+
+    .cell-number {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .clues {
+      text-align: left;
+      padding: 10px 20px;
+      border-top: 1px solid #ddd;
+    }
+
+    .clue-section {
+      margin-bottom: 20px;
+    }
+
+    .clue-title {
+      font-size: 18px;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .clue-list {
+      list-style: none;
+      padding: 0;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .clue-list li {
+      margin: 5px 0;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .submit-btn:hover {
+      background-color: #45a049;
+    }
+
+    .back-btn {
+      background-color: #0277bd;
+      color: white;
+    }
+
+    .back-btn:hover {
+      background-color: #01579b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Crossword Puzzle</h1>
+    <div class="grid-container">
+      <div class="grid" id="grid"></div>
+    </div>
+    <div class="clues">
+      <div class="clue-section">
+        <h3 class="clue-title">Menurun:</h3>
+        <ul class="clue-list">
+          <li>1. Pulau terbesar di Indonesia.</li>
+          <li>2. Ibu kota Indonesia.</li>
+          <li>3. Suku asli dari pulau Bali.</li>
+        </ul>
+      </div>
+      <div class="clue-section">
+        <h3 class="clue-title">Mendatar:</h3>
+        <ul class="clue-list">
+          <li>1. Lagu kebangsaan Indonesia.</li>
+          <li>4. Gunung tertinggi di Indonesia.</li>
+          <li>5. Warisan budaya tak benda berupa tarian asal Aceh.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="back-btn" onclick="history.back()">Kembali</button>
+      <button class="submit-btn" id="submit">Periksa Jawaban</button>
+    </div>
+  </div>
+
+  <script>
+    const puzzle = [
+      [{ letter: 'I', number: 1 }, { letter: 'N' }, { letter: 'D' }, { letter: 'O' }, { letter: 'N' }, { letter: 'E' }, { letter: 'S' }, { letter: 'I' }, { letter: 'A' }, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [{ letter: 'S', number: 4 }, { letter: 'U' }, { letter: 'M' }, { letter: 'A' }, { letter: 'T' }, { letter: 'E' }, { letter: 'R' }, { letter: 'A' }, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [{ letter: 'J', number: 2 }, { letter: 'A' }, { letter: 'K' }, { letter: 'A' }, { letter: 'R' }, { letter: 'T' }, { letter: 'A' }, null, null, null],
+      [null, null, { letter: 'B', number: 5 }, { letter: 'A' }, { letter: 'L' }, { letter: 'I' }, null, null, null, null],
+      [null, null, { letter: 'S' }, { letter: 'A' }, { letter: 'M' }, { letter: 'A' }, { letter: 'N' }, { letter: 'G' }, null, null],
+      [null, null, null, null, null, null, null, null, null, null]
+    ];
+
+    const gridElement = document.getElementById('grid');
+
+    function renderPuzzle() {
+      gridElement.innerHTML = '';
+      for (let row = 0; row < puzzle.length; row++) {
+        for (let col = 0; col < puzzle[row].length; col++) {
+          const cellData = puzzle[row][col];
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          if (cellData === null) {
+            cell.classList.add('blocked');
+          } else {
+            if (cellData.number) {
+              const cellNumber = document.createElement('div');
+              cellNumber.classList.add('cell-number');
+              cellNumber.textContent = cellData.number;
+              cell.appendChild(cellNumber);
+            }
+            const input = document.createElement('input');
+            input.maxLength = 1;
+            cell.appendChild(input);
+          }
+          gridElement.appendChild(cell);
+        }
+      }
+    }
+
+    renderPuzzle();
+
+    document.getElementById('submit').addEventListener('click', () => {
+      const inputs = gridElement.querySelectorAll('input');
+      let correct = true;
+
+      inputs.forEach((input, index) => {
+        const row = Math.floor(index / 10);
+        const col = index % 10;
+        const cellData = puzzle[row][col];
+        if (cellData && input.value.toUpperCase() !== cellData.letter) {
+          correct = false;
+          input.style.backgroundColor = '#ffcccc';
+        } else if (cellData) {
+          input.style.backgroundColor = '#ccffcc';
+        }
+      });
+
+      if (correct) {
+        alert('Selamat! Anda berhasil menyelesaikan teka-teki!');
+      } else {
+        alert('Beberapa jawaban masih salah. Coba lagi!');
+      }
+    });
+  </script>
+</body>
+</html>

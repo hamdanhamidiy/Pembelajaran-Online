@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matematika - Pembelajaran Online</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Lato', sans-serif;
+      background: linear-gradient(135deg, #4e73df 50%, #4e73df);
+      color: #f5f6fa;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 15px 25px;
+      margin-top: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-right: auto;
+    }
+
+    .logo-img {
+      height: 45px;
+      margin-right: 15px;
+    }
+
+    .logo h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #f5f6fa;
+    }
+
+    /* Konten Utama */
+    .content {
+      flex: 1;
+      max-width: 1200px;
+      margin: auto;
+      text-align: left;
+      padding: 40px;
+    }
+
+    .content h2 {
+      font-size: 40px;
+      margin-bottom: 30px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .content p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+
+    /* Desain Bab */
+    .bab {
+      background-color: #ffffff;
+      color: #2c3e50;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      padding: 25px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .bab:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .bab h3 {
+      font-size: 28px;
+      color: #3498db;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .bab p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .video-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border-radius: 10px;
+    }
+
+    /* Tombol Kembali */
+    .btn-back {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      background-color: #2c3e50;
+      color: white;
+      border: 1px solid transparent;
+      transition: background-color 0.3s;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .btn-back:hover {
+      background-color: #ffffff;
+      color: #3498db;
+      border: 1px solid #3498db;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #2c3e50;
+      color: white;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="Kurikulum_Merdeka.png" alt="Logo" class="logo-img">
+      <h2>Pembelajaran Online</h2>
+    </div>
+  </header>
+
+  <main class="content">
+    <h2>Matematika - Pembelajaran Kelas 4</h2>
+
+    <!-- BAB 1 -->
+    <div class="bab">
+        <h3>BAB 1: Bilangan Cacah Besar</h3>
+        <p>Materi ini membahas tentang membaca dan menulis bilangan hingga 10.000, serta operasi matematika dasar seperti penjumlahan, pengurangan, perkalian, dan pembagian bilangan hingga 100. Pelajari konsepnya dengan mudah!</p>
+        
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/ZwZ5R-AmwyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      
+    <!-- BAB 2 -->
+    <div class="bab">
+      <h3>BAB 2: Pecahan</h3>
+      <p>Di bab ini, kamu akan belajar tentang pecahan dengan pembilang satu, pecahan senilai, serta menghubungkan pecahan desimal dengan konsep persen.</p>
+      
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/CuZkrtdplNg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- BAB 3 -->
+    <div class="bab">
+      <h3>BAB 3: Pola Gambar dan Pola Bilangan</h3>
+      <p>Pelajari bagaimana mengenali pola gambar dan pola bilangan yang membesar dan mengecil. Pemahaman ini penting untuk memahami urutan angka dalam matematika.</p>
+      
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/Qfr-zb_7UEg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- BAB 4 -->
+    <div class="bab">
+      <h3>BAB 4: Pengukuran Luas dan Volume</h3>
+      <p>Di bab ini, kamu akan mempelajari pengukuran luas dan volume dengan satuan baku dan tidak baku. Menyediakan video yang membantu kamu memahami konsep-konsep ini secara praktis.</p>
+      
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/zEoqBU1GIVM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- BAB 5 -->
+    <div class="bab">
+      <h3>BAB 5: Bangun Datar</h3>
+      <p>Pelajari ciri-ciri bangun datar serta komposisi dan dekomposisi bangun datar. Materi ini akan mengajarkanmu cara mengenali bentuk-bentuk geometri yang ada di sekitar kita.</p>
+      
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/zEs4Es7h15c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- BAB 6 -->
+    <div class="bab">
+      <h3>BAB 6: Piktogram dan Diagram Batang</h3>
+      <p>Materi ini membahas cara membaca dan membuat piktogram serta diagram batang, yang sangat berguna untuk mengolah data secara visual.</p>
+      
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/wc9DBqJ30sQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <a href="materi.html" class="btn-back">Kembali ke Materi Pembelajaran</a>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Pembelajaran Online Anak SD. Semua Hak Dilindungi.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis & Permainan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset dan Gaya Global */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Lato', sans-serif;
+      background: linear-gradient(135deg, #1e3a8a 50%, #ffffff);
+      color: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      background-color: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 1200px;
+      width: 90%;
+      border-radius: 8px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .nav-bar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .nav-links li {
+      margin: 0 15px;
+    }
+
+    .nav-links a {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      color: #1e40af; /* Teks biru gelap */
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: #ffffff; /* Latar belakang putih untuk tombol default */
+      transition: all 0.4s ease;
+      overflow: hidden;
+      z-index: 1;
+      border: 2px solid #1e40af; /* Border biru gelap */
+    }
+    
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.1); /* Efek transparan halus */
+      transform: skewX(-30deg);
+      transition: left 0.5s ease;
+      z-index: -1;
+    }
+    
+    .nav-links a:hover::before {
+      left: 100%;
+    }
+    
+    .nav-links a:hover {
+      background: #f0f4f8; /* Latar belakang lebih terang saat hover */
+      color: #1e40af; /* Teks biru gelap saat hover */
+      box-shadow: 0 6px 12px rgba(37, 99, 235, 0.2); /* Efek bayangan lebih halus */
+      transform: scale(1.03); /* Membesar sedikit */
+    }
+    
+    /* Efek saat tombol aktif */
+    .nav-links .active {
+      background: #ffffff; /* Latar belakang putih untuk tombol yang aktif */
+      color: #1e40af; /* Teks biru gelap */
+      font-weight: bold; /* Font tetap tebal saat aktif */
+      transform: scale(1.05); /* Membesar sedikit saat aktif */
+      border: 2px solid #1e40af; /* Border biru gelap tetap ada */
+    }
+    
+    /* Tombol lainnya tetap biru */
+    .nav-links a:not(.active) {
+      background: #2563eb; /* Tombol lainnya tetap biru */
+      color: white; /* Teks tetap putih */
+      border: 2px solid #2563eb; /* Border biru tetap */
+    }
+    
+    /* Tombol yang tidak aktif */
+    .nav-links a.inactive {
+      background: #2563eb; /* Tombol tidak aktif tetap biru */
+      color: white;
+      border: 2px solid #2563eb; /* Border biru tetap */
+    }
+
+    /* Konten Utama */
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      text-align: center;
+      flex: 1;
+      padding: 30px 15px;
+    }
+
+    .content h2 {
+      font-size: 36px;
+      color: #ffffff;
+    }
+
+    .grid-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      color: #0f172a;
+      transition: transform 0.3s, box-shadow 0.3s;
+      width: 300px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+ 
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #1e3a8a;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #0f172a;
+      color: white;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="Kurikulum_Merdeka.png" alt="Logo">
+      <h2>Pembelajaran Online</h2>
+    </div>
+    <nav class="nav-bar">
+      <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="materi.html">Materi Pembelajaran</a></li>
+        <li><a href="kuis.html" class="active">Kuis & Permainan</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>Kuis & Permainan</h2>
+    <div class="grid-container">
+      <div class="card">
+        <img src="quiss.png" alt="Kuis Pilihan Ganda">
+        
+        <a href="kuispilgan.html" class="btn">Mainkan</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Pembelajaran Online Anak SD. Semua Hak Dilindungi.</p>
+  </footer>
+</body>
+</html>
